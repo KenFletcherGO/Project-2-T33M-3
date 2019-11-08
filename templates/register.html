@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+<title>
+</title>
+
+<body>
+    {{ if .Nametooshort }}
+    Your user name should be at least three characters. Please try registering again.
+    <br><br>
+    <form method="POST" action="/register">
+         <label>Username:</label><br />
+         <input type="text" name="name"><br>
+         <label>Password:</label><br />
+         <input type="password" name="pw"><br>
+         <br>
+         <input type="submit" value="Register">
+     </form>
+    {{ else if .Namenotunique }}
+    Someone has already chose this user name. Please choose another user name.
+   <br><br>
+    <form method="POST" action="/register">
+        <label>Username:</label><br />
+        <input type="text" name="name"><br>
+        <label>Password:</label><br />
+        <input type="password" name="pw"><br>
+        <br>
+        <input type="submit" value="Register">
+    </form>
+    {{ else if .Pwtooshort }}
+    Your password should contain at least three characters. Please try registering again.
+   <br><br>
+   <form method="POST" action="/register">
+        <label>Username:</label><br />
+        <input type="text" name="name"><br>
+        <label>Password:</label><br />
+        <input type="password" name="pw"><br>
+        <br>
+        <input type="submit" value="Register">
+    </form>
+    {{ else }}
+   Thank you for registering {{.Username}}. You may login now.
+    <br>
+    <br>
+    <a href="/index">Login</a>
+    {{ end }}
+</body>
+</html>

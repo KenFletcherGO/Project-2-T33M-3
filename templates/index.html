@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+<title>
+</title>
+</head>
+<body>
+{{ if .Loggedin }}
+You are logged in.
+<br><br>
+<a href="/logout"><button>Logout</button></a>
+{{ else }}
+<a href="/registrationform">Register</a>
+<br><br>
+User Login:
+<br>
+   <form method="POST" action="/login">
+        <label>Username:</label><br />
+        <input type="text" name="name"><br>
+        <label>Password:</label><br />
+        <input type="password" name="pw"><br>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    <br><br><br>
+   
+{{ end }}
+</body>
+</html>
