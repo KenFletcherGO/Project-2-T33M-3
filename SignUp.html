@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sign Up</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+      html,body {padding:0;margin:0;}
+      .rate{
+        font: 14px Arial;
+      }
+      label{
+          font: 20px Arial;
+      }
+    </style>
+
+
+
+</head>
+<br>
+<h1 class="text align-self-center p-2">Sign Up for an account</h1>
+<body>
+<br>
+<br>
+<div class="col-sm-9">
+
+
+<form action="/" method="post"> 
+  <div class="form-group">
+  <div class="form-group">
+     <label>Email Address</label>
+     <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+     </div>
+ 
+ <div class="form-group">
+ <label>Password</label>
+ <input type="password" class="form-control" name="pwd" placeholder="Enter Password" required>
+ </div>
+ 
+ <div class="form-group">
+ <label>Confirm Password</label>
+ <input type="password" class="form-control" name="pwd-confirm" placeholder="Confirm Password" required>
+ </div>
+
+ <button type="submit" name ="signup-submit" class="btn btn-primary">Submit</button>
+ 
+  </form>
+  
+</body>
+</html>
