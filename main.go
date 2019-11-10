@@ -50,8 +50,8 @@ func register(response http.ResponseWriter, request *http.Request) {
 
 	temp, _ := template.ParseFiles("templates/register.html")
 	user := Users{}
-	user.Username = request.FormValue("name")
-	user.Password = request.FormValue("pw")
+	user.Username = request.FormValue("uname")
+	user.Password = request.FormValue("pwd")
 	// check if username is too short or is already taken or if password is too short
 	if len(user.Username) < 3 {
 		user.Nametooshort = true
@@ -85,8 +85,8 @@ func login(response http.ResponseWriter, request *http.Request) {
 	login := LoginInfo{}
 	// if not logged in then check if username and password are in database
 	if !Signin.Loggedin {
-		user.Username = request.FormValue("name")
-		user.Password = request.FormValue("pw")
+		user.Username = request.FormValue("uname")
+		user.Password = request.FormValue("pwd")
 		if uniqueName(user.Username) == true {
 			login.Invalidname = true
 		} else if passwordMatches(user.Username, user.Password) == false {
