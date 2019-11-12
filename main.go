@@ -17,7 +17,7 @@ var hostname, userName, password, enter string
 func main() {
 
 	//These are login variables for the REMOTE/target computer.
-	fmt.Printf("Enter a hostname(IP):  ")
+	fmt.Printf("Enter a hostname(IP):   ")
 	fmt.Scanln(&hostname)
 	fmt.Printf("Enter a username:  ")
 	fmt.Scanln(&userName)
