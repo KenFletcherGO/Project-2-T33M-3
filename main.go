@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"html/template"
+	"net"
 	"net/http"
 
 	dbconnection "github.com/NGKlaure/Project-2-T33M-3/dbConnection"
@@ -99,10 +100,18 @@ func login(response http.ResponseWriter, request *http.Request) {
 	} else {
 
 		user.Username = Signin.CurrentUser
+
 	}
 
 	view.Singleuser = user
 	view.Login = login
+
+	//connect to this socket
+	conn, _ := net.Dial("tcp", "127.0.0.1:8081")
+
+	// send to socket
+	fmt.Fprintf(conn, user.Username+"\n")
+
 	temp.Execute(response, view)
 }
 
@@ -169,6 +178,8 @@ func main() {
 	db := dbconnection.DbConnection()
 	ping(db)
 	getAll(db)
+
+	//conn, _ := net.Dial("tcp", "127.0.0.1:8081")
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/registrationform", registrationForm)
