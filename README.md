@@ -52,3 +52,7 @@ of the remote computer, but not much else. Only option 1 works, 2 and 3 do not a
             -need to add in a fourth user prompt to un-hardcode the local servercatchbox.
 
 11/11:  -Upload/Download functions implemented. Instructions to use app added.
+
+        -Nathan's request is implemented. 
+
+        SUGGESTIONS: have program automatically find local user so we can cut out the input prompt. have the program automatically create servercatchbox in local/remote computers if they do not exist already. 

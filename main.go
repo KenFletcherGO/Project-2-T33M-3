@@ -96,10 +96,12 @@ func uploader(response http.ResponseWriter, request *http.Request) {
 	var upload1 = request.FormValue("upload1")
 	fmt.Println("The file to upload is: " + upload1)
 	enter = userName + "@" + hostname
-	temp, _ := template.ParseFiles("html/localfiles.html")
-	response.Header().Set("Content-Type", "text/html; charset=utf-8")
-	remote, err := exec.Command("ls", "/home/"+userName+"/servercatchbox", ">", "file1", ";", "tail", "file1").Output()
 	remote2 := exec.Command("scp", "/home/"+localuser+"/servercatchbox/"+upload1, enter+":/home/"+userName+"/servercatchbox")
+	remote2.Run()
+
+	temp, _ := template.ParseFiles("html/remotefiles.html")
+	response.Header().Set("Content-Type", "text/html; charset=utf-8")
+	remote, err := exec.Command("ssh", enter, "ls", "/home/"+userName+"/servercatchbox", ">", "file1", ";", "tail", "file1").Output()
 
 	g := localstruct{FILES: make([]string, 1)}
 	length := 0
@@ -123,10 +125,11 @@ func downloader(response http.ResponseWriter, request *http.Request) {
 	var download1 = request.FormValue("download1")
 	fmt.Println("The file to download is: " + download1)
 	enter = userName + "@" + hostname
-	temp, _ := template.ParseFiles("html/remotefiles.html")
-	response.Header().Set("Content-Type", "text/html; charset=utf-8")
-	remote, err := exec.Command("ssh", enter, "ls", "/home/"+userName+"/servercatchbox", ">", "file1", ";", "tail", "file1").Output()
 	remote2 := exec.Command("scp", enter+":/home/"+userName+"/servercatchbox/"+download1, "/home/"+localuser+"/servercatchbox")
+	remote2.Run()
+	temp, _ := template.ParseFiles("html/localfiles.html")
+	response.Header().Set("Content-Type", "text/html; charset=utf-8")
+	remote, err := exec.Command("ls", "/home/"+localuser+"/servercatchbox", ">", "file1", ";", "tail", "file1").Output()
 
 	g := localstruct{FILES: make([]string, 1)}
 	length := 0
@@ -141,6 +144,6 @@ func downloader(response http.ResponseWriter, request *http.Request) {
 			length = length + 1
 		}
 	}
-	remote2.Run()
+
 	temp.Execute(response, g)
 }
