@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"net/http"
 
 	_ "github.com/lib/pq"
 )
@@ -16,6 +17,10 @@ const (
 )
 
 func main() {
+
+	//Runs the http service in a goroutine as to not freeze the code.
+	go http.ListenAndServe(":8080", nil)
+
 	//The following code is used to initialize the users database containing usernames and passwords.
 	datasource := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		host, dbport, dbusername, dbpassword, dbname)

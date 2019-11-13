@@ -1,0 +1,13 @@
+/*Sets the webpage background to the webpagebg image.*/
+body {
+    background-image: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/webpagebg.png');
+    background-repeat: repeat-x;
+    background-repeat: repeat-y;
+}
+
+/*Class to display our logo.*/
+.teamlogo {
+    background-image: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/team3small.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+}
