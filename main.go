@@ -69,6 +69,8 @@ func register(response http.ResponseWriter, request *http.Request) {
 		if err != nil {
 			panic(err)
 		}
+		//myfolder := exec.Command("ssh", "agent1@192.168.56.102", "mkdir", "/home/dropbox/"+user.Username).Run()
+
 	}
 
 	temp.Execute(response, user)
