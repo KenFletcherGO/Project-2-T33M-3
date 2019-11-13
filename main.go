@@ -49,6 +49,10 @@ func remotefiles(response http.ResponseWriter, request *http.Request) {
 	temp, _ := template.ParseFiles("html/remotefiles.html")
 	response.Header().Set("Content-Type", "text/html; charset=utf-8")
 	enter = userName + "@" + hostname
+
+	remote3 := exec.Command("ssh", enter, "mkdir", "/home/"+userName+"/servercatchbox")
+	remote3.Run()
+
 	remote, err := exec.Command("ssh", enter, "ls", "/home/"+userName+"/servercatchbox", ">", "file1", ";", "tail", "file1").Output()
 	g := localstruct{FILES: make([]string, 1)}
 	length := 0
@@ -70,6 +74,10 @@ func remotefiles(response http.ResponseWriter, request *http.Request) {
 func localfiles(response http.ResponseWriter, request *http.Request) {
 	temp, _ := template.ParseFiles("html/localfiles.html")
 	response.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	remote3 := exec.Command("mkdir", "/home/"+localuser+"/servercatchbox")
+	remote3.Run()
+
 	remote, err := exec.Command("ls", "/home/"+localuser+"/servercatchbox", ">", "file1", ";", "tail", "file1").Output()
 	g := localstruct{FILES: make([]string, 1)}
 	length := 0

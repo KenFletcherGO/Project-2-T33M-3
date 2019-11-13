@@ -53,6 +53,8 @@ of the remote computer, but not much else. Only option 1 works, 2 and 3 do not a
 
 11/11:  -Upload/Download functions implemented. Instructions to use app added.
 
-        -Nathan's request is implemented. 
+        -Nathan's request is implemented. (uploading redirects to remote page, downloading redirects to home page)
 
         SUGGESTIONS: have program automatically find local user so we can cut out the input prompt. have the program automatically create servercatchbox in local/remote computers if they do not exist already. 
+
+        -Nadine's request is implemented. Program creates servercatchbox in local/remote computers if they do not exist already.
