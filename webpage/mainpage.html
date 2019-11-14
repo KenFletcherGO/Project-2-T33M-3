@@ -8,10 +8,85 @@
         <ul>
             <button class="upload"></button>
             <button class="download"></button>
-            <button class="newfolder"></button>
-            <button class="deletefolder"></button>
-            <button class="newfile"></button>
-            <button class="deletefile"></button>
+            <button id="newfolder" class="newfolder"></button>
+            <button id="deletefolder" class="deletefolder"></button>
+            <button id="newfile" class="newfile"></button>
+            <button id= "deletefile" class="deletefile"></button>
         </ul>
+        <div id="newfolderModal" class="modal">
+            <div class="modal-content">
+                <span id="newfolderClose" class="modal-close-button">&times;</span>
+                <p>
+                    The form for creating a new folder on the server goes here.
+                </p>
+            </div>
+        </div>
+        <div id="deletefolderModal" class="modal">
+            <div class="modal-content">
+                <span id="deletefolderClose" class="modal-close-button">&times;</span>
+                <p>
+                    The form for deleting a folder on the server goes here.
+                </p>
+            </div>
+        </div>
+        <div id="newfileModal" class="modal">
+            <div class="modal-content">
+                <span id="newfileClose" class="modal-close-button">&times;</span>
+                <p>
+                    The form for creating a new file on the server goes here.
+                </p>
+            </div>
+        </div>
+        <div id="deletefileModal" class="modal">
+            <div class="modal-content">
+                <span id="deletefileClose" class="modal-close-button">&times;</span>
+                <p>
+                    The form for deleting a file on the server goes here.
+                </p>
+            </div>
+        </div>
+
+        <script>
+            //Block for the new folder modal.
+            var newfolderModal = document.getElementById("newfolderModal");
+            var newfolderButton = document.getElementById("newfolder");
+            var newfolderClose = document.getElementById("newfolderClose");
+            newfolderButton.onclick = function() {
+                newfolderModal.style.display = "block";
+            }
+            newfolderClose.onclick = function() {
+                newfolderModal.style.display = "none";
+            }
+
+            //Block for the delete folder modal.
+            var deletefolderModal = document.getElementById("deletefolderModal");
+            var deletefolderButton = document.getElementById("deletefolder");
+            var deletefolderClose = document.getElementById("deletefolderClose");
+            deletefolderButton.onclick = function() {
+                deletefolderModal.style.display = "block";
+            }
+
+            //Block for the new file modal.
+            var newfileModal = document.getElementById("newfileModal");
+            var newfileButton = document.getElementById("newfile");
+            var newfileClose = document.getElementById("newfileClose");
+            newfileButton.onclick = function() {
+                newfileModal.style.display = "block";
+            }
+            newfileClose.onclick = function() {
+                newfileModal.style.display = "none";
+            }
+
+            //Block for the delete file modal.
+            var deletefileModal = document.getElementById("deletefileModal");
+            var deletefileButton = document.getElementById("deletefile");
+            var deletefileClose = document.getElementById("deletefileClose");
+            deletefileButton.onclick = function() {
+                deletefileModal.style.display = "block";
+            }
+            deletefileClose.onclick = function() {
+                deletefileModal.style.display = "none";
+            }
+        </script>
     </body>
 </html>
