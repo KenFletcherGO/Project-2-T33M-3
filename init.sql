@@ -1,5 +1,5 @@
 create table users (
-    username VARCHAR PRIMARY KEY NOT NULL,
+    username VARCHAR UNIQUE PRIMARY KEY NOT NULL,
     userpass VARCHAR NOT NULL
 );
 

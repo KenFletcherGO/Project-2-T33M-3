@@ -1,34 +1,39 @@
 /*Sets the webpage background to the webpagebg image.*/
 body {
-    background-image: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/webpagebg.png');
+    background-image: url('./images/webpagebg.png');
     background-repeat: repeat-x;
     background-repeat: repeat-y;
 }
 
+button {
+    display: inline;
+}
+
 /*Class to display our logo.*/
-.teamlogo {
-    background-image: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/team3small.png');
-    background-repeat: no-repeat;
-    background-position: left top;
+div.image0 {
+    content: url("./images/team3small.png");
 }
 
 /*Upload buttons and states -- :hover changes the icon when it's hovered over, and :active changes the icon when it's clicked.*/
 .upload {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/upload-icon.png') no-repeat;
+    background: url('./images/upload-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .upload:hover {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/upload-hover-icon.png') no-repeat;
+    background: url('./images/upload-hover-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .upload:active {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/upload-pressed-icon.png') no-repeat;
+    background: url('./images/upload-pressed-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
@@ -37,21 +42,24 @@ body {
 
 /*Download buttons and states.*/
 .download {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/download-icon.png') no-repeat;
+    background: url('./images/download-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .download:hover {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/download-hover-icon.png') no-repeat;
+    background: url('./images/download-hover-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .download:active {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/download-pressed-icon.png') no-repeat;
+    background: url('./images/download-pressed-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
@@ -60,21 +68,24 @@ body {
 
 /*New folder buttons and states.*/
 .newfolder {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/newfolder-icon.png') no-repeat;
+    background: url('./images/newfolder-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .newfolder:hover {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/newfolder-hover-icon.png') no-repeat;
+    background: url('./images/newfolder-hover-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .newfolder:active {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/newfolder-pressed-icon.png') no-repeat;
+    background: url('./images/newfolder-pressed-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
@@ -83,21 +94,24 @@ body {
 
 /*Delete folder buttons and states.*/
 .deletefolder {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/deletefolder-icon.png') no-repeat;
+    background: url('./images/deletefolder-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .deletefolder:hover {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/deletefolder-hover-icon.png') no-repeat;
+    background: url('./images/deletefolder-hover-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .deletefolder:active {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/deletefolder-pressed-icon.png') no-repeat;
+    background: url('./images/deletefolder-pressed-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
@@ -106,21 +120,24 @@ body {
 
 /*New files buttons and states.*/
 .newfile {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/newfile-icon.png') no-repeat;
+    background: url('./images/newfile-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .newfile:hover {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/newfile-hover-icon.png') no-repeat;
+    background: url('./images/newfile-hover-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .newfile:active {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/newfile-pressed-icon.png') no-repeat;
+    background: url('./images/newfile-pressed-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
@@ -129,21 +146,24 @@ body {
 
 /*Delete file buttons and states.*/
 .deletefile {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/deletefile-icon.png') no-repeat;
+    background: url('./images/deletefile-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .deletefile:hover {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/deletefile-hover-icon.png') no-repeat;
+    background: url('./images/deletefile-hover-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
     height: 100px;
 }
 .deletefile:active {
-    background: url('/src/190930-UTA-CW-Go/Project-2-T33M-3/webpage/images/deletefile-pressed-icon.png') no-repeat;
+    background: url('./images/deletefile-pressed-icon.png') no-repeat;
+    background-size: 75%;
     cursor: pointer;
     border: none;
     width: 100px;
