@@ -1,5 +1,7 @@
 package main
 
+//garner version
+
 import (
 	"fmt"
 	"html/template"
@@ -33,8 +35,8 @@ func main() {
 	http.HandleFunc("/localfiles.html", localfiles)
 	http.HandleFunc("/downloader", downloader)
 	http.HandleFunc("/uploader", uploader)
-	fmt.Println(" Open browser to localhost:7004")
-	http.ListenAndServe(":7004", nil)
+	fmt.Println(" Open browser to localhost:8080")
+	http.ListenAndServe(":8080", nil)
 }
 
 //index runs the index page
