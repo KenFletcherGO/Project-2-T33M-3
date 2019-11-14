@@ -49,18 +49,13 @@ func main() {
 }
 
 func loginpage(response http.ResponseWriter, request *http.Request) {
-	login, _ := template.ParseFiles("webpage/loginpage.html")
+	login, _ := template.ParseFiles("webpage/loginpage.html", "webpage/loginpage.css")
 	login.Execute(response, nil)
 }
 
 func mainpage(response http.ResponseWriter, request *http.Request) {
-	mainpage, _ := template.ParseFiles("webpage/mainpage.html")
+	mainpage, _ := template.ParseFiles("webpage/mainpage.html", "webpage/mainpage.css")
 	mainpage.Execute(response, nil)
-}
-
-func logincss(response http.ResponseWriter, request *http.Request) {
-	login, _ := template.ParseFiles("webpage/loginpage.css")
-	login.Execute(response, nil)
 }
 
 //CreateFolder creates a new folder inside the server.
