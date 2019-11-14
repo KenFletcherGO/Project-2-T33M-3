@@ -95,7 +95,7 @@ func index(response http.ResponseWriter, request *http.Request) {
 }
 
 func registrationForm(response http.ResponseWriter, request *http.Request) {
-	temp, _ := template.ParseFiles("templates/registrationform.html")
+	temp, _ := template.ParseFiles("html/registrationform.html")
 	temp.Execute(response, nil)
 }
 
@@ -103,7 +103,7 @@ func register(response http.ResponseWriter, request *http.Request) {
 	db := dbconnection.DbConnection()
 	defer db.Close()
 
-	temp, _ := template.ParseFiles("templates/register.html")
+	temp, _ := template.ParseFiles("html/register.html")
 	user := Users{}
 	user.Username = request.FormValue("uname")
 	user.Password = request.FormValue("pwd")
@@ -133,7 +133,7 @@ func login(response http.ResponseWriter, request *http.Request) {
 	db := dbconnection.DbConnection()
 	defer db.Close()
 
-	temp, _ := template.ParseFiles("templates/login.html")
+	temp, _ := template.ParseFiles("html/login.html")
 
 	user := Users{}
 	view := ViewInfo{}
@@ -176,7 +176,7 @@ func login(response http.ResponseWriter, request *http.Request) {
 
 //handle logout listener
 func logout(response http.ResponseWriter, request *http.Request) {
-	temp, _ := template.ParseFiles("templates/index.html")
+	temp, _ := template.ParseFiles("html/index.html")
 	Signin.Loggedin = false
 
 	temp.Execute(response, Signin)
