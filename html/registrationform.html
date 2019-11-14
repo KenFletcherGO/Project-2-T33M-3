@@ -2,7 +2,7 @@
 <html lang="en"></html>
 <head>
 <title>
-       Login page
+    Registration form 
 </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,27 +11,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-{{ if .Loggedin }}
-You are logged in.
-<br>
-            Please select Local or Remote
-            <br>
-        <a class="btn btn-primary btn-lg btn-block" href="localfiles.html">Local Files</button>
-            <br>
-        <a class="btn btn-success btn-lg btn-block" href="remotefiles.html">Remote Files</button>
-<br><br>
-<a href="/logout"><button>Logout</button></a>
-{{ else }}
-<a href="/registrationform">Register</a>
-<br><br>
-User Login:
-<br>
     <div class="container">
-            <h2>Sign in</h2>
-            <p> Clik here <code><a href="/registrationform">To register </a></code> If you don't have an account:</p>
-            
-            <form action="/login" method="POST" class="was-validated">
+            <h2>sign up</h2>
+            <p> Clik here <code><a href="/index">Login</a></code> If you already have an account:</p>
+            <form action="/register" method="POST" class="was-validated">
               <div class="form-group">
                 <label for="uname">Username:</label>
                 <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
@@ -55,7 +40,7 @@ User Login:
             </form>
           </div>
 
-   
-{{ end }}
+
 </body>
+
 </html>
