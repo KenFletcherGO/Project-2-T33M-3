@@ -194,6 +194,7 @@ func passwordMatches(name string, password string) bool {
 //ping tests if connection with database
 func ping(db *sql.DB) {
 	err := db.Ping()
+
 	if err != nil {
 		panic(err)
 	}
@@ -321,6 +322,33 @@ func downloader(response http.ResponseWriter, request *http.Request) {
 	temp.Execute(response, g)
 }
 
-func createfilelocal(response http.ResponseWriter, request *http.Request) {
+func loginpage(response http.ResponseWriter, request *http.Request) {
+	login, _ := template.ParseFiles("webpage/loginpage.html", "webpage/loginpage.css")
+	login.Execute(response, nil)
+}
+
+func mainpage(response http.ResponseWriter, request *http.Request) {
+	mainpage, _ := template.ParseFiles("webpage/mainpage.html", "webpage/mainpage.css")
+	mainpage.Execute(response, nil)
+}
+
+//CreateFolder creates a new folder inside the server.
+func CreateFolder(n string) {
+	exec.Command("mkdir " + n)
+}
+
+//DeleteFolder will delete a folder inside the server.
+func DeleteFolder(n string) {
+	exec.Command("rm -rf " + n)
+}
+
+//NewFile will create a new file inside the current folder.
+func NewFile(n string) {
+	exec.Command("touch " + n)
+}
+
+//DeleteFile will delete a file inside the current folder.
+func DeleteFile(n string) {
+	exec.Command("rm " + n)
 
 }
