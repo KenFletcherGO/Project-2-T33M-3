@@ -6,21 +6,20 @@
     Local computer can upload/download files from local to remote repository on server computer
 
 ## INSTRUCTIONS TO RUN:
-    1. Set up SSH keygen between your local and remote computer.
-            ssh.com/ssh/keygen for instructions.
-    2. Create a folder in your LOCAL user directory called "servercatchbox"
-            /home/LOCALUSER/servercatchbox
-    3. Create a folder in your REMOTE user directory called "servercatchbox"
-            /home/REMOTEUSER/servercatchbox
-    4. Go run main.go
-            follow prompts. 
-                Local User
-                Remote host IP address
-                Remote user name
-                Remote password
-    5. Add files to both servercatchbox folders and test upload/download functions.
+    - Run these commands before anything else:
+                chmod 400 t33mkey.pem
+        1. Run the database. cd into the db folder and run : 
+       
+        - docker rm -f usersdb
+        - docker build -t usersdb .
+        - docker run --name usersdb -d -p 5432:5432 usersdb
 
+        2. Run user-server.go in the server computer
+        
+        3. Then cd .. back into your main folder 
 
+        - chmod 400 t33mkey.pem 
+        - run main.go
 
 
 ## DOCUMENTATION:
@@ -84,3 +83,44 @@ of the remote computer, but not much else. Only option 1 works, 2 and 3 do not a
         -Made variable names more descriptive.
 
         -Added nadine's request to make folder when user registers for the first time.
+
+        -Revised remote3, (added -p)
+
+        -Relocated all hardcoded variables to beginning of code. 
+
+# 11/15:  -Everything works. 
+       Idea: automate the creation of database, the permission change of chmod.
+                Somebody please change the 	
+                        dbconnection "Project-2-T33M-3-nadine/dbConnection"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Misc Code. 
+        	//	scp -i t33mkey.pem user/user-server.go  ubuntu@ec2-3-86-179-34.compute-1.amazonaws.com:
+	// ssh -i "t33mkey.pem" ubuntu@ec2-3-86-179-34.compute-1.amazonaws.com
+	// ssh -i "t33mkey.pem" ubuntu@ec2-3-86-179-34.compute-1.amazonaws.com mkdir -p home/user/test
+	//	remote, err := exec.Command("ssh", "-i", "t33mkey.pem", amazon , "ls", "/home/"+remoteUsername+"/servercatchbox", ">", "file1", ";", "cat", "file1").Output()
+	// 	remote3 := exec.Command("ssh", "-i", "t33mkey.pem", amazon, "mkdir", "-p", "/home/"+remoteUsername+"/servercatchbox")
+
+// scp -i t33mkey.pem user/user-server.go  ubuntu@ec2-3-86-179-34.compute-1.amazonaws.com:
+//remoteUsernameAndHostname = remoteUsername + "@" + remoteHostname //

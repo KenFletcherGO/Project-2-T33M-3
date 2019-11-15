@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os/exec"
 
-	dbconnection "Project-2-T33M-3-nadine/dbConnection"
+	dbconnection "Project-2-T33M-3/dbConnection"
 )
 
 //localstruct
@@ -42,17 +42,14 @@ type ViewInfo struct {
 	Login      LoginInfo
 }
 
-var remoteUsername, password, remoteUsernameAndHostname string
+var remoteUsername, password string
 
-//fmt.Scanln(&localuser)
-//fmt.Scanln(&remoteHostname)
-const remoteHostname = "192.168.1.33"
+const remoteHostname = "3.86.179.34"
 const localuser = "garner"
-const tcpLine = "192.168.1.33:8081"
-
-//remoteUsernameAndHostname = remoteUsername + "@" + remoteHostname //
-
-//Signin a
+const tcpLine = "3.86.179.34:8081"                              //This is the tcp connection to the user-server.go program on the server
+const amazon = "ubuntu@ec2-3-86-179-34.compute-1.amazonaws.com" //This is the amazon aws hostname@IP address.
+const key = "t33mkey.pem"                                       //This is the amazon key to ssh into the server.
+//Signin variable
 var Signin = LoginInfo{}
 
 func main() {
@@ -61,24 +58,13 @@ func main() {
 	ping(db)
 	getAll(db)
 
-	/*
-		//These are variables for HOME/local computer:
-		fmt.Printf("Enter your user name(for local computer):  ")
-		fmt.Scanln(&localuser)
-		//These are login variables for the REMOTE/target computer.
-		fmt.Printf("Enter a remoteHostname(IP) of target remote computer:  ")
-		fmt.Scanln(&remoteHostname)
-		fmt.Printf("Enter a username of this target remote computer:  ")
-		fmt.Scanln(&remoteUsername)
-		fmt.Printf("Enter a password for this target remote computer:  ")
-		fmt.Scanln(&password)
-		remoteUsernameAndHostname = remoteUsername + "@" + remoteHostname */
-
 	http.HandleFunc("/", index)
 	http.HandleFunc("/remotefiles.html", remotefiles)
 	http.HandleFunc("/localfiles.html", localfiles)
 	http.HandleFunc("/downloader", downloader)
 	http.HandleFunc("/uploader", uploader)
+	http.HandleFunc("/createfilelocal", createfilelocal)
+
 	http.HandleFunc("/registrationform", registrationForm)
 	http.HandleFunc("/register", register)
 	http.HandleFunc("/login", login)
@@ -109,6 +95,7 @@ func register(response http.ResponseWriter, request *http.Request) {
 	user := Users{}
 	user.Username = request.FormValue("uname")
 	user.Password = request.FormValue("pwd")
+
 	// check if username is too short or is already taken or if password is too short
 	if len(user.Username) < 3 {
 		user.Nametooshort = true
@@ -117,8 +104,7 @@ func register(response http.ResponseWriter, request *http.Request) {
 		user.Namenotunique = true
 	} else if len(user.Password) < 3 {
 		user.Pwtooshort = true
-		// insert username and password into database if acceptable
-	} else {
+	} else { // insert username and password into database if acceptable
 		statement := "INSERT INTO users (username, password)"
 		statement += " VALUES ($1, $2);"
 		_, err := db.Exec(statement, user.Username, user.Password)
@@ -126,27 +112,23 @@ func register(response http.ResponseWriter, request *http.Request) {
 			panic(err)
 		}
 		remoteUsername = user.Username
-		remoteUsernameAndHostname = remoteUsername + "@" + remoteHostname
-		remote3 := exec.Command("ssh", remoteUsernameAndHostname, "mkdir", "-p", "/home/"+remoteUsername+"/servercatchbox")
+		remote3 := exec.Command("ssh", "-i", key, amazon, "mkdir", "-p", "home/"+remoteUsername+"/servercatchbox")
 		remote3.Run()
-
 	}
-
 	temp.Execute(response, user)
 }
 
-//handler for loging
+//handler for logging in
 func login(response http.ResponseWriter, request *http.Request) {
 	db := dbconnection.DbConnection()
 	defer db.Close()
-
 	temp, _ := template.ParseFiles("html/login.html")
 
 	user := Users{}
 	view := ViewInfo{}
 	login := LoginInfo{}
-	// if not logged in then check if username and password are in database
-	if !Signin.Loggedin {
+
+	if !Signin.Loggedin { // if not logged in then check if username and password are in database
 		user.Username = request.FormValue("uname")
 		user.Password = request.FormValue("pwd")
 		if uniqueName(user.Username) == true {
@@ -156,40 +138,31 @@ func login(response http.ResponseWriter, request *http.Request) {
 		} else {
 			Signin.CurrentUser = user.Username
 			Signin.Loggedin = true
-
 			remoteUsername = user.Username
-			remoteUsernameAndHostname = remoteUsername + "@" + remoteHostname
-
 		}
 	} else {
-
 		user.Username = Signin.CurrentUser
-
 	}
 
 	view.Singleuser = user
 	view.Login = login
 
-	//HARDCODE
 	//connect to this socket
 	conn, _ := net.Dial("tcp", tcpLine)
 
 	// send to socket
 	fmt.Fprintf(conn, user.Username+"\n")
-
 	temp.Execute(response, view)
-
 }
 
-//handle logout listener
+//logout handles logout listener
 func logout(response http.ResponseWriter, request *http.Request) {
 	temp, _ := template.ParseFiles("html/index.html")
 	Signin.Loggedin = false
-
 	temp.Execute(response, Signin)
 }
 
-// check if the username does not already exist in database
+// uniqueName checks if the username does not already exist in database
 func uniqueName(name string) bool {
 	db := dbconnection.DbConnection()
 	defer db.Close()
@@ -205,7 +178,7 @@ func uniqueName(name string) bool {
 	return true // name is not already in the db
 }
 
-//check if password match username
+//passwordMatches check if passwords matches password stored with username
 func passwordMatches(name string, password string) bool {
 	db := dbconnection.DbConnection()
 	defer db.Close()
@@ -218,20 +191,19 @@ func passwordMatches(name string, password string) bool {
 	return false
 }
 
-// methode to test if connected with database
+//ping tests if connection with database
 func ping(db *sql.DB) {
 	err := db.Ping()
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println("Successfully connected3!")
+	fmt.Println("Successfully connected!")
 }
 
 func getAll(db *sql.DB) {
 	rows, _ := db.Query("SELECT * FROM users")
 	for rows.Next() {
-
 		var remoteUsername string
 		var password string
 		rows.Scan(&remoteUsername, &password)
@@ -243,12 +215,11 @@ func getAll(db *sql.DB) {
 func remotefiles(response http.ResponseWriter, request *http.Request) {
 	temp, _ := template.ParseFiles("html/remotefiles.html")
 	response.Header().Set("Content-Type", "text/html; charset=utf-8")
-	remoteUsernameAndHostname = remoteUsername + "@" + remoteHostname
 
-	remote3 := exec.Command("ssh", remoteUsernameAndHostname, "mkdir", "-p", "/home/"+remoteUsername+"/servercatchbox")
+	remote3 := exec.Command("ssh", "-i", key, amazon, "mkdir", "-p", "home/"+remoteUsername+"/servercatchbox")
 	remote3.Run()
 
-	remote, err := exec.Command("ssh", remoteUsernameAndHostname, "ls", "/home/"+remoteUsername+"/servercatchbox", ">", "file1", ";", "cat", "file1").Output()
+	remote, err := exec.Command("ssh", "-i", key, amazon, "ls", "home/"+remoteUsername+"/servercatchbox", ">", "file1", ";", "cat", "file1").Output()
 	g := localstruct{FILES: make([]string, 1)}
 	length := 0
 	if err != nil {
@@ -270,15 +241,14 @@ func localfiles(response http.ResponseWriter, request *http.Request) {
 	temp, _ := template.ParseFiles("html/localfiles.html")
 	response.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-	remote3 := exec.Command("mkdir", "-p", "/home/"+localuser+"/servercatchbox")
-	remote3.Run()
+	local4 := exec.Command("mkdir", "-p", "/home/"+localuser+"/servercatchbox")
+	local4.Run()
 
 	remote, err := exec.Command("ls", "/home/"+localuser+"/servercatchbox", ">", "file1", ";", "cat", "file1").Output()
 	g := localstruct{FILES: make([]string, 1)}
 	length := 0
 
 	if err != nil {
-
 		fmt.Println(err)
 		fmt.Print("some error")
 	}
@@ -294,17 +264,17 @@ func localfiles(response http.ResponseWriter, request *http.Request) {
 	temp.Execute(response, g)
 }
 
-//prototype UPLOAD
+//uploader Uploads file from user's servercatchbox to the server's user's catchbox.
 func uploader(response http.ResponseWriter, request *http.Request) {
 	var upload1 = request.FormValue("upload1")
 	fmt.Println("The file to upload is: " + upload1)
-	remoteUsernameAndHostname = remoteUsername + "@" + remoteHostname
-	remote2 := exec.Command("scp", "/home/"+localuser+"/servercatchbox/"+upload1, remoteUsernameAndHostname+":/home/"+remoteUsername+"/servercatchbox")
+
+	remote2 := exec.Command("scp", "-i", key, "/home/"+localuser+"/servercatchbox/"+upload1, amazon+":home/"+remoteUsername+"/servercatchbox")
 	remote2.Run()
 
 	temp, _ := template.ParseFiles("html/remotefiles.html")
 	response.Header().Set("Content-Type", "text/html; charset=utf-8")
-	remote, err := exec.Command("ssh", remoteUsernameAndHostname, "ls", "/home/"+remoteUsername+"/servercatchbox", ">", "file1", ";", "cat", "file1").Output()
+	remote, err := exec.Command("ssh", "-i", key, amazon, "ls", "home/"+remoteUsername+"/servercatchbox", ">", "file1", ";", "cat", "file1").Output()
 
 	g := localstruct{FILES: make([]string, 1)}
 	length := 0
@@ -323,13 +293,14 @@ func uploader(response http.ResponseWriter, request *http.Request) {
 	temp.Execute(response, g)
 }
 
-//downloader
+//downloader Downloads file from server user catchbox to local user catchbox.
 func downloader(response http.ResponseWriter, request *http.Request) {
 	var download1 = request.FormValue("download1")
 	fmt.Println("The file to download is: " + download1)
-	remoteUsernameAndHostname = remoteUsername + "@" + remoteHostname
-	remote2 := exec.Command("scp", remoteUsernameAndHostname+":/home/"+remoteUsername+"/servercatchbox/"+download1, "/home/"+localuser+"/servercatchbox")
+
+	remote2 := exec.Command("scp", "-i", key, amazon+":home/"+remoteUsername+"/servercatchbox/"+download1, "/home/"+localuser+"/servercatchbox")
 	remote2.Run()
+
 	temp, _ := template.ParseFiles("html/localfiles.html")
 	response.Header().Set("Content-Type", "text/html; charset=utf-8")
 	remote, err := exec.Command("ls", "/home/"+localuser+"/servercatchbox", ">", "file1", ";", "cat", "file1").Output()
@@ -347,6 +318,9 @@ func downloader(response http.ResponseWriter, request *http.Request) {
 			length = length + 1
 		}
 	}
-
 	temp.Execute(response, g)
+}
+
+func createfilelocal(response http.ResponseWriter, request *http.Request) {
+
 }
