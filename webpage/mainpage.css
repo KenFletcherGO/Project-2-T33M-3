@@ -14,12 +14,23 @@ div.image0 {
     content: url("./images/team3small.png");
 }
 
+form {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Class that moves the buttons to their proper place.*/
+.button-align {
+    position: absolute;
+    right: 30px;
+    top: 15px;
 }
 
 /*Modal background template used to take in file/folder names for buttons.*/
@@ -66,155 +77,155 @@ p {
 /*Upload buttons and states -- :hover changes the icon when it's hovered over, and :active changes the icon when it's clicked.*/
 .upload {
     background: url('./images/upload-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .upload:hover {
     background: url('./images/upload-hover-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .upload:active {
     background: url('./images/upload-pressed-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 
 /*Download buttons and states.*/
 .download {
     background: url('./images/download-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .download:hover {
     background: url('./images/download-hover-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .download:active {
     background: url('./images/download-pressed-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 
 /*New folder buttons and states.*/
 .newfolder {
     background: url('./images/newfolder-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .newfolder:hover {
     background: url('./images/newfolder-hover-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .newfolder:active {
     background: url('./images/newfolder-pressed-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 
 /*Delete folder buttons and states.*/
 .deletefolder {
     background: url('./images/deletefolder-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .deletefolder:hover {
     background: url('./images/deletefolder-hover-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .deletefolder:active {
     background: url('./images/deletefolder-pressed-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 
 /*New files buttons and states.*/
 .newfile {
     background: url('./images/newfile-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .newfile:hover {
     background: url('./images/newfile-hover-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .newfile:active {
     background: url('./images/newfile-pressed-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 
 /*Delete file buttons and states.*/
 .deletefile {
     background: url('./images/deletefile-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .deletefile:hover {
     background: url('./images/deletefile-hover-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
 .deletefile:active {
     background: url('./images/deletefile-pressed-icon.png') no-repeat;
-    background-size: 75%;
+    background-size: 100%;
     cursor: pointer;
     border: none;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
 }
