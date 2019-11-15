@@ -8,15 +8,17 @@
 ## INSTRUCTIONS TO RUN:
     - Run these commands before anything else:
                 chmod 400 t33mkey.pem
-        1. Run the database. cd into the db folder and run : 
+        1. Change localuser to your username. 
+
+        2. Run the database. cd into the db folder and run : 
        
         - docker rm -f usersdb
         - docker build -t usersdb .
         - docker run --name usersdb -d -p 5432:5432 usersdb
 
-        2. Run user-server.go in the server computer
+        3. Run user-server.go in the server computer
         
-        3. Then cd .. back into your main folder 
+        4. Then cd .. back into your main folder 
 
         - chmod 400 t33mkey.pem 
         - run main.go
@@ -90,8 +92,7 @@ of the remote computer, but not much else. Only option 1 works, 2 and 3 do not a
 
 # 11/15:  -Everything works. 
        Idea: automate the creation of database, the permission change of chmod.
-                Somebody please change the 	
-                        dbconnection "Project-2-T33M-3-nadine/dbConnection"
+               automate localuser variable.
 
 
 
