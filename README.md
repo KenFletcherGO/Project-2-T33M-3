@@ -79,3 +79,8 @@ of the remote computer, but not much else. Only option 1 works, 2 and 3 do not a
         -Both of our codes work seperately. Right now they are able to "run" at the same time, but have issues navigating pages and displaying content properly. Have tested: My code continues to be able to transfer files between the two devices. Nadine's code on the server side continues to recognize when a user has logged in. 
 
         LARGE PROBLEM: Currently my program does not care whoever is logged in. Also, there is information hardcoded in, need to look at Nadine's code closer. 
+
+# 11/14:  -Successfully merged Nadine and my code. 
+        -Made variable names more descriptive.
+
+        -Added nadine's request to make folder when user registers for the first time.
