@@ -1,6 +1,6 @@
 create table users (
-    username VARCHAR UNIQUE PRIMARY KEY NOT NULL,
-    userpass VARCHAR NOT NULL
+    accountusername VARCHAR UNIQUE PRIMARY KEY NOT NULL,
+    accountpassword VARCHAR NOT NULL
 );
 
 insert into users values ('nadine', 'nadine');
