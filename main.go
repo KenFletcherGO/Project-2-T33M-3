@@ -45,7 +45,7 @@ type ViewInfo struct {
 var remoteUsername, password string
 
 const remoteHostname = "3.86.179.34"
-const localuser = "garner"
+const localuser = "terrell"
 const tcpLine = "3.86.179.34:8081"                              //This is the tcp connection to the user-server.go program on the server
 const amazon = "ubuntu@ec2-3-86-179-34.compute-1.amazonaws.com" //This is the amazon aws hostname@IP address.
 const key = "t33mkey.pem"                                       //This is the amazon key to ssh into the server.
@@ -63,7 +63,7 @@ func main() {
 	http.HandleFunc("/localfiles.html", localfiles)
 	http.HandleFunc("/downloader", downloader)
 	http.HandleFunc("/uploader", uploader)
-	http.HandleFunc("/createfilelocal", createfilelocal)
+	// http.HandleFunc("/createfilelocal", createfilelocal)
 
 	http.HandleFunc("/registrationform", registrationForm)
 	http.HandleFunc("/register", register)
@@ -151,7 +151,7 @@ func login(response http.ResponseWriter, request *http.Request) {
 	conn, _ := net.Dial("tcp", tcpLine)
 
 	// send to socket
-	fmt.Fprintf(conn, user.Username+"\n")
+	fmt.Fprintf(conn, user.Username+" has logged in"+"\n")
 	temp.Execute(response, view)
 }
 
@@ -159,6 +159,12 @@ func login(response http.ResponseWriter, request *http.Request) {
 func logout(response http.ResponseWriter, request *http.Request) {
 	temp, _ := template.ParseFiles("html/index.html")
 	Signin.Loggedin = false
+
+	//connect to this socket
+	conn, _ := net.Dial("tcp", tcpLine)
+
+	// send to socket
+	fmt.Fprintf(conn, Signin.CurrentUser+" has logged out"+"\n")
 	temp.Execute(response, Signin)
 }
 
@@ -290,6 +296,12 @@ func uploader(response http.ResponseWriter, request *http.Request) {
 			length = length + 1
 		}
 	}
+
+	//connect to this socket
+	conn, _ := net.Dial("tcp", tcpLine)
+
+	// send to socket
+	fmt.Fprintf(conn, Signin.CurrentUser+" has uploaded "+upload1+"\n")
 	remote2.Run()
 	temp.Execute(response, g)
 }
@@ -319,6 +331,10 @@ func downloader(response http.ResponseWriter, request *http.Request) {
 			length = length + 1
 		}
 	}
+	conn, _ := net.Dial("tcp", tcpLine)
+
+	// send to socket
+	fmt.Fprintf(conn, Signin.CurrentUser+" has downloaded "+download1+"\n")
 	temp.Execute(response, g)
 }
 
