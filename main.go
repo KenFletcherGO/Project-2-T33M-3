@@ -109,10 +109,11 @@ func login(response http.ResponseWriter, request *http.Request) {
 	view.Login = login
 
 	//connect to this socket
-	conn, _ := net.Dial("tcp", "127.0.0.1:8081")
+	//conn, _ := net.Dial("tcp", "host IP:8081") // use this to connect to AWS. host IP = EC2 ip
+	conn, _ := net.Dial("tcp", "18.216.103.15:8081")
 
 	// send to socket
-	fmt.Fprintf(conn, user.Username+"\n")
+	fmt.Fprintf(conn, view.Singleuser.Username+"\n")
 
 	temp.Execute(response, view)
 }
