@@ -2,17 +2,23 @@
     <html>
         <head>
             <title>Remote Files</title>
-            <link rel="stylesheet" href="style.css">
+            <!-- <link rel="stylesheet" href="style.css"> -->
+            <link rel="stylesheet" href="https://project-2-t33m-3.s3.us-east-2.amazonaws.com/loginpage.css">
         </head>
-        <h1>REMOTE FILES</h1>
+        <style>
+        form, a, td {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        </style>
         <body>
+            <div class="image0"></div>
+                <h1>Remote Files</h1>
                 <form action="downloader" method="POST">
-                        File to DOWNLOAD: <input name="download1" type="text"/><br>
+                        File to download: <input name="download1" type="text"/><br>
                         
-                        <input type="submit" value="button"/>
-                </form>
+                        <input class="download" type="submit" value=""/>
+                </form><br>
                 <a class="btn btn-primary btn-lg btn-block" href="index.html">Index</a>   
-                Remote files
                 <br>
                 {{range .FILES}} 
                 <br>
