@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+<title>
+    Registration feedback
+</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://project-2-t33m-3.s3.us-east-2.amazonaws.com/loginpage.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+code {
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<body>
+    <div class="image0"></div>
+    <br>
+    {{ if .Nametooshort }}
+    Your username should be at least three characters. Please think of another name.
+    <br><br>
+    <div class="container">
+            <h2>Sign up</h2>
+            <p><code><a href="/index">Click here</a></code> to login if you already have an account.</p>
+            <form action="/register" method="POST" class="was-validated">
+              <div class="form-group">
+                <label for="uname">Username:</label>
+                <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+              </div>
+              <div class="form-group form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" name="remember" required> I agree to be good.
+                  <div class="valid-feedback">Thank you!</div>
+                  <div class="invalid-feedback">Check this to continue.</div>
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+    {{ else if .Namenotunique }}
+    That username belongs to someone else. Please think of another name.
+   <br><br>
+   <div class="container">
+        <h2>Sign up</h2>
+        <p><code><a href="/index">Click here</a></code> to login if you already have an account.</p>
+        <form action="/register" method="POST" class="was-validated">
+          <div class="form-group">
+            <label for="uname">Username:</label>
+            <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+          </div>
+          <div class="form-group form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="remember" required> I agree to be good.
+              <div class="valid-feedback">Thank you!</div>
+              <div class="invalid-feedback">Check this to continue.</div>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    {{ else if .Pwtooshort }}
+    Your password should contain at least three characters. Please think of a better password.
+   <br><br>
+   <div class="container">
+        <h2>Sign up</h2>
+        <p><code><a href="/index">Click here</a></code> to login if you already have an account.</p>
+        <form action="/register" method="POST" class="was-validated">
+          <div class="form-group">
+            <label for="uname">Username:</label>
+            <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+          </div>
+          <div class="form-group form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="remember" required> I agree to be good.
+              <div class="valid-feedback">Thank you!</div>
+              <div class="invalid-feedback">Check this to continue.</div>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    {{ else }}
+   Thank you for registering, {{.Username}}! You may login now.
+    <br>
+    <br>
+    <a href="/index">Login</a>
+    {{ end }}
+</body>
+</html>

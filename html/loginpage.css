@@ -1,0 +1,71 @@
+/*Sets the webpage background to the webpagebg image.*/
+body {
+    background-image: url("https://project-2-t33m-3.s3.us-east-2.amazonaws.com/images/webpagebg.png");
+    background-repeat: repeat-x;
+    background-repeat: repeat-y;
+}
+
+/*Class to display our logo.*/
+div.image0 {
+    content: url("https://project-2-t33m-3.s3.us-east-2.amazonaws.com/images/team3small.png");
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Upload buttons and states -- :hover changes the icon when it's hovered over, and :active changes the icon when it's clicked.*/
+.upload {
+    background: url("https://project-2-t33m-3.s3.us-east-2.amazonaws.com/images/upload-icon.png") no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    border: none;
+    width: 60px;
+    height: 60px;
+}
+.upload:hover {
+    background: url("https://project-2-t33m-3.s3.us-east-2.amazonaws.com/images/upload-hover-icon.png") no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    border: none;
+    width: 60px;
+    height: 60px;
+}
+.upload:active {
+    background: url("https://project-2-t33m-3.s3.us-east-2.amazonaws.com/images/upload-pressed-icon.png") no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    border: none;
+    width: 60px;
+    height: 60px;
+}
+
+/*Download buttons and states.*/
+.download {
+    background: url("https://project-2-t33m-3.s3.us-east-2.amazonaws.com/images/download-icon.png") no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    border: none;
+    width: 60px;
+    height: 60px;
+}
+.download:hover {
+    background: url("https://project-2-t33m-3.s3.us-east-2.amazonaws.com/images/download-hover-icon.png") no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    border: none;
+    width: 60px;
+    height: 60px;
+}
+.download:active {
+    background: url("https://project-2-t33m-3.s3.us-east-2.amazonaws.com/images/download-pressed-icon.png") no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    border: none;
+    width: 60px;
+    height: 60px;
+}

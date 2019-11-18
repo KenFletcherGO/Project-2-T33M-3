@@ -1,0 +1,30 @@
+<DOCTYPE html>
+    <html>
+        <head>
+            <title>Local Files</title>
+            <!-- <link rel="stylesheet" href="style.css"> -->
+            <link rel="stylesheet" href="https://project-2-t33m-3.s3.us-east-2.amazonaws.com/loginpage.css">
+        </head>
+        <style>
+        form, a, td {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        </style>
+        <body>
+        <div class="image0"></div>
+        <h1>Local Files</h1>
+                <form action="uploader" method="POST">
+                        File to upload: <input name="upload1" type="text"/><br>
+                        
+                        <input class="upload" type="submit" value=""/>
+                </form>
+            <br>
+            <a class="btn btn-primary btn-lg btn-block" href="index.html">Index</a>
+            <br>      
+            {{range .FILES}} 
+            <br> 
+            <td align="center">{{.}}</td>
+            {{end}}
+        </body>
+    </html>
