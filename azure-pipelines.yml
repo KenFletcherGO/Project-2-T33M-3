@@ -26,12 +26,14 @@ steps:
     echo '##vso[task.prependpath]$(GOROOT)/bin'
   displayName: 'Set up the Go workspace'
 
-- script: go get -v -t -d ./...
+
+- script: |
+    if [ -f Gopkg.toml ]; then
+        curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+        dep ensure
+    fi
   workingDirectory: '$(modulePath)'
-  displayName: 'go get dependencies'
-
-
-
+  displayName: 'Download dep and run `dep ensure`'
 
 - script: go build -v .
   workingDirectory: '$(modulePath)'
