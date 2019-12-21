@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os/exec"
 
-	dbconnection "Project-2-T33M-3/dbConnection"
+	dbconnection "github.com/NGKlaure/Project-2-T33M-3/dbConnection"
 )
 
 //localstruct
